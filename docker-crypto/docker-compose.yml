@@ -1,0 +1,10 @@
+services:
+
+  app:
+    image: node:${NODE_VERSION}
+    working_dir: /app
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - ../api/:/app
+    command: sh -c "npx nodemon -r dotenv/config src/app.js"
