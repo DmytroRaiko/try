@@ -1,5 +1,22 @@
 services:
 
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./tmp/db_data:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - ${ADMINER_PORT}:8080
+
+
   app:
     image: node:${NODE_VERSION}
     working_dir: /app
